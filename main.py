@@ -5,13 +5,31 @@ def user_inputs():
     user_letter_second = input("What is the final letter of the range? ")
     return user_letter, user_letter_first, user_letter_second
 
-def check_letter(user_letter, user_letter_first, user_letter_second):
-    in_range = True
-    for user_letter in total_letters:
-        if user_letter_first <= user_letter <= user_letter_second:
-            in_range = False
-            print("Your letter is in this range")
-            break
-    return in_range
+def index_letter(user_letter, user_letter_first, user_letter_second):
+    index_letter = total_letters.index(user_letter)
+    index_letter_first = total_letters.index(user_letter_first)
+    index_letter_second = total_letters.index(user_letter_second)
+    return index_letter, index_letter_first, index_letter_second
 
+
+def index_checker(index_letter, index_letter_first, index_letter_second):
+    inside_range = False
+    if index_letter_first > index_letter_second and index_letter_second <= index_letter <= index_letter_first:
+        inside_range = True
+        return inside_range
+    elif index_letter_second > index_letter_first and index_letter_first <= index_letter <= index_letter_second:
+        inside_range = True
+        return inside_range
+    else:
+        return inside_range
+
+
+user_letter, user_letter_first, user_letter_second = user_inputs()
+index_letter, index_letter_first, index_letter_second = index_letter(user_letter, user_letter_first, user_letter_second)
+inside_range = index_checker(index_letter, index_letter_first, index_letter_second)
+
+if inside_range == True:
+    print(user_letter, "is in the range of", user_letter_first, "and", user_letter_second)
+else:
+    print(user_letter, "is not in the range of", user_letter_first, "and", user_letter_second)
 
